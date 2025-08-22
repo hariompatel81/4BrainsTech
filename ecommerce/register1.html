@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple E-Commerce</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #2c3e50;
+      color: #fff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .product h3 {
+      margin: 10px 0;
+    }
+    .product button {
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .cart {
+      position: fixed;
+      top: 0; right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      padding: 20px;
+    }
+    .cart.active {
+      right: 0;
+    }
+    .cart h2 {
+      margin: 0 0 20px;
+    }
+    .cart-items {
+      max-height: 70%;
+      overflow-y: auto;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .checkout {
+      margin-top: 20px;
+      background: #e67e22;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ShopEasy</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#" id="cart-btn">🛒 Cart</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="product">
+      <img src="https://via.placeholder.com/200" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>₹500</p>
+      <button onclick="addToCart('Product 1', 500)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200" alt="Product 2">
+      <h3>Product 2</h3>
+      <p>₹750</p>
+      <button onclick="addToCart('Product 2', 750)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200" alt="Product 3">
+      <h3>Product 3</h3>
+      <p>₹1200</p>
+      <button onclick="addToCart('Product 3', 1200)">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart" id="cart">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cart-items"></div>
+    <h3>Total: ₹<span id="total">0</span></h3>
+    <div class="checkout">Checkout</div>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      cart.push({name, price});
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      cart.forEach((item, index) => {
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <span>${item.name}</span>
+            <span>₹${item.price}</span>
+          </div>
+        `;
+      });
+      document.getElementById('total').innerText = total;
+    }
+
+    document.getElementById('cart-btn').addEventListener('click', () => {
+      document.getElementById('cart').classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #box-1 {
+        height: 150px;
+        width: 150px;
+        background-color: blue;
+      }
+
+      #box-2 {
+        height: 150px;
+        width: 150px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div id="box-1"></div>
+      <div id="box-2"></div>
+    </div>
+    <button id="click-me">Click</button>
+
+    <script>
+     let clickMe = document.getElementById("click-me");
+     let box1 = document.getElementById("box-1");
+     let box2 = document.getElementById("box-2");
+     let temp ;
+
+     clickMe.addEventListener("click",(event)=>{
+        temp = window.getComputedStyle(box1).backgroundColor;
+        box1.style.backgroundColor = window.getComputedStyle(box2).backgroundColor;
+        box2.style.backgroundColor = temp;
+     });
+    </script>
+  </body>
+</html>

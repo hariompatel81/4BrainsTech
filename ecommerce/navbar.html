@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #navbar {
+        padding: 1rem 1.5rem;
+        background-color: black;
+      }
+
+      ul {
+        list-style: none;
+        color: white;
+        display: flex;
+        gap: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      let root = document.getElementById("root");
+      let nav = document.createElement("nav");
+      nav.setAttribute("id","navbar");
+      let ul = document.createElement("ul");
+      let manu = ["Home","About","Content"];
+      for(let i=0; i<manu.length; i++){
+        let li = document.createElement("li");
+        li.innerHTML = manu[i];
+        ul.appendChild(li);
+
+      }
+
+      nav.appendChild(ul);
+      root.appendChild(nav); 
+
+    </script>
+  </body>
+</html>

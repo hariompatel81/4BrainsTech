@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register / Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <!-- Top alert for login errors / success messages -->
+    <div id="globalAlert" class="alert hidden" role="alert" aria-live="polite"></div>
+
+    <section class="auth-card" aria-label="Authentication">
+      <div class="card-header">
+        <button id="tabRegister" class="tab active" type="button" aria-selected="true">Register</button>
+        <button id="tabLogin" class="tab" type="button" aria-selected="false">Login</button>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <form id="registerForm" class="form" novalidate>
+        <div class="field">
+          <label for="regName">Full Name</label>
+          <input id="regName" name="name" type="text" placeholder="e.g., Hariom Patel" autocomplete="name" required />
+          <small class="error" id="errRegName"></small>
+        </div>
+
+        <div class="field">
+          <label for="regEmail">Email</label>
+          <input id="regEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+          <small class="error" id="errRegEmail"></small>
+        </div>
+
+        <div class="field with-toggle">
+          <label for="regPassword">Password</label>
+          <div class="password-wrap">
+            <input id="regPassword" name="password" type="password" placeholder="At least 8 chars" autocomplete="new-password" required />
+            <button type="button" class="eye" data-target="regPassword" aria-label="Show or hide password">👁️</button>
+          </div>
+          <div class="strength" id="pwdStrength" aria-hidden="true">
+            <div class="bar" id="pwdBar"></div>
+            <span id="pwdLabel">Weak</span>
+          </div>
+          <small class="hint">Use 8+ chars with a mix of letters, numbers & symbols.</small>
+          <small class="error" id="errRegPassword"></small>
+        </div>
+
+        <div class="field with-toggle">
+          <label for="regConfirm">Confirm Password</label>
+          <div class="password-wrap">
+            <input id="regConfirm" name="confirm" type="password" placeholder="Re-enter password" autocomplete="new-password" required />
+            <button type="button" class="eye" data-target="regConfirm" aria-label="Show or hide password">👁️</button>
+          </div>
+          <small class="error" id="errRegConfirm"></small>
+        </div>
+
+        <div class="field checkbox">
+          <input id="regTerms" type="checkbox" required />
+          <label for="regTerms">I agree to the <a href="#" tabindex="0">Terms & Conditions</a></label>
+        </div>
+
+        <button class="primary" type="submit">Create account</button>
+
+        <p class="muted">
+          Already have an account?
+          <a href="#" id="switchToLogin">Login</a>
+        </p>
+      </form>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="form hidden" novalidate>
+        <div class="field">
+          <label for="logEmail">Email</label>
+          <input id="logEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+          <small class="error" id="errLogEmail"></small>
+        </div>
+
+        <div class="field with-toggle">
+          <label for="logPassword">Password</label>
+          <div class="password-wrap">
+            <input id="logPassword" name="password" type="password" placeholder="Your password" autocomplete="current-password" required />
+            <button type="button" class="eye" data-target="logPassword" aria-label="Show or hide password">👁️</button>
+          </div>
+          <small class="error" id="errLogPassword"></small>
+        </div>
+
+        <button class="primary" type="submit">Login</button>
+
+        <p class="muted">
+          New here?
+          <a href="#" id="switchToRegister">Create an account</a>
+        </p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p>Demo only — accounts are stored locally in your browser.</p>
+    </footer>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
